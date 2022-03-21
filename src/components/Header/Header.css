@@ -20,3 +20,10 @@ nav ul li a {
   line-height: 20px;
   letter-spacing: 0.005em;
 }
+
+nav ul li a:hover {
+  color: rgb(214, 144, 14);
+  /* background-color: rgb(221, 148, 13);
+  padding: 10px 16px;
+  border-radius: 10px; */
+}
