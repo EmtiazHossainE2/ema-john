@@ -1,14 +1,20 @@
 import React from 'react';
 import './Product.css'
+
 const Product = (props) => {
-    const {img,name,price,seller,ratings} = props.product
+    const { img, name, price, seller, ratings } = props.product
     return (
-        <div>
+        <div className='product'>
             <img src={img} alt="" />
-            <h3>{name}</h3>
-            <h4>Price : ${price}</h4>
-            <p>Manufacturer : {seller}</p>
-            <p>Rating : {ratings} start</p>
+            <div className="product-info">
+                <p className='product-name'>{name.slice(0, 20)}</p>
+                <p className='product-price'>Price : ${price}</p>
+                <p><small>Manufacturer : {seller}</small></p>
+                <p><small>Rating : {ratings} start</small></p>
+            </div>
+            <button className='cart-btn'>
+                <p>Add To Cart</p>
+            </button>
         </div>
     );
 };
