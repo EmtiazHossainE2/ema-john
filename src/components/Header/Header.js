@@ -18,7 +18,7 @@ const Header = () => {
                         <li><a href="./review">Order Review</a></li>
                         <li><a href="./inventory">Manage Inventory</a></li>
                     </ul>
-                    <img src={menu} alt="" class="menu-icon" ></img>
+                    <img src={menu} alt="" className='menu-icon' ></img>
                 </div>
             </nav>
         </div>
