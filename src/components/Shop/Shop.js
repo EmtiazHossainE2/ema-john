@@ -1,3 +1,5 @@
+import { faArrowRight, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
 import Product from '../Product/Product';
 import './Shop.css'
@@ -36,10 +38,10 @@ const Shop = () => {
                     <p>Tax : $ </p>
                     <h2>Grand Total: $ </h2>
                     <button className='clear-cart'>
-                        <p>Clear Cart</p>
+                        <p>Clear Cart <FontAwesomeIcon className='icon' icon={faTrash}></FontAwesomeIcon></p>
                     </button>
                     <button className='review-order'>
-                        <p>Review Order</p>
+                        <p>Review Order <FontAwesomeIcon className='icon' icon={faArrowRight}></FontAwesomeIcon></p>
                     </button>
                 </div>
             </div>

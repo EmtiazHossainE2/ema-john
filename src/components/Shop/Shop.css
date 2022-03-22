@@ -7,15 +7,15 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
-  margin: 60px 25px 300px 35px;
+  margin: 50px 20px 300px 30px;
 }
 .order-container{
   background: rgba(255, 153, 0, 0.3);
-  padding: 0 28px 0 20px;
+  padding: 0 12px 0 12px;
   height: 62vh;
   border-radius: 8px;
   position: fixed;
-  right: 20px;
+  right: 0px;
 }
 .clear-cart{
   width: 100%;
