@@ -1,6 +1,7 @@
 .shop-container {
   display: grid;
   grid-template-columns: 4fr 1fr;
+  position: relative;
 }
 .products-container {
   display: grid;
@@ -10,12 +11,14 @@
 }
 .order-container{
   background: rgba(255, 153, 0, 0.3);
-  padding-left: 20px;
+  padding: 0 28px 0 20px;
   height: 62vh;
   border-radius: 8px;
+  position: fixed;
+  right: 20px;
 }
 .clear-cart{
-  width: 90%;
+  width: 100%;
   background: #FF3030;
   border: 0;
   border-radius: 4px;
@@ -23,9 +26,10 @@
   margin-bottom: 16px;
 }
 .review-order{
-  width: 90%;
+  width: 100%;
   background: #FF9900;
   border: 0;
   border-radius: 4px;
   color: #fff;
 }
+
