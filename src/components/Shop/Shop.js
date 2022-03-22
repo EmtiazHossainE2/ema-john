@@ -34,8 +34,8 @@ const Shop = () => {
                     <h3>Order Summary</h3>
                     <p>Selected Items : {cart.length}</p>
                     <p>Total Price : $ </p>
-                    <p>Total Shipping Charge: $</p>
-                    <p>Tax : $ </p>
+                    <p>Total Shipping Charge: $10</p>
+                    <p>Tax : $5 </p>
                     <h2>Grand Total: $ </h2>
                     <button className='clear-cart'>
                         <p>Clear Cart <FontAwesomeIcon className='icon' icon={faTrash}></FontAwesomeIcon></p>
