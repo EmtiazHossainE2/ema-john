@@ -35,3 +35,31 @@
   cursor: pointer;
 }
 
+@media only screen and (max-width: 1200px) {
+  .products-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin: 50px 20px 300px 30px;
+  }
+}
+@media only screen and (max-width: 992px) {
+  .products-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    grid-template-columns: 1fr;
+  }
+}
+@media only screen and (max-width: 692px) {
+  .shop-container {
+    display: flex ;
+    flex-direction: column;
+    flex-direction: column-reverse
+  }
+  .order-container{
+    height: 43vh;
+    position: sticky;
+  }
+} 
+

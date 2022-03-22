@@ -27,3 +27,23 @@ nav ul li a:hover {
   padding: 10px 16px;
   border-radius: 10px; */
 }
+.menu-icon{
+  width: 28px;
+  margin-left: 20px;
+  display: none;
+}
+@media only screen and (max-width: 692px){
+  nav {
+    display: flex;
+    justify-content: space-around;
+    height: 100px;
+  }
+  nav ul {
+    display: none;
+  }
+  .menu-icon{
+    cursor: pointer;
+    display: block;
+    background-color: white;
+}
+}
