@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { addToDb } from '../../utilities/fakedb';
+import { addToDb, getStoredCart } from '../../utilities/fakedb';
 import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
 import './Shop.css'
@@ -11,6 +11,23 @@ const Shop = () => {
             .then(res => res.json())
             .then(data => setProducts(data))
     }, [])
+
+    //ager data load kore dekhabo (side effect ) 
+    useEffect(() => {
+        const storedCart = getStoredCart()
+        const savedProduct = []
+        //obj pacci tai for in loop use korci 
+        for (const id in storedCart) {
+            const exitProduct = products.find(product => product.id === id)
+            // console.log(exitProduct);
+            if (exitProduct) {
+                const quantity = storedCart[id]
+                exitProduct.quantity = quantity
+                savedProduct.push(exitProduct)
+            }
+        }
+        setCart(savedProduct)
+    }, [products])
 
     //cart handler
     const handleAddToCart = (product) => {
