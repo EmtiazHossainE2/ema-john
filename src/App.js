@@ -1,9 +1,12 @@
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Header from './conponents/Header/Header';
+import './App.css'
 
 const App = () => {
     return (
         <div>
-            <h2>Ema John Responsive </h2>
+            <Header></Header>
         </div>
     );
 };
