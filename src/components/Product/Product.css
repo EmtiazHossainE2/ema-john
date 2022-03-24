@@ -1,9 +1,10 @@
-
+.cart{
+    border-radius: 10px;
+}
 .product-img{
     width: 270px;
     height: 270px;
-    border-radius: 8px;
-    margin: 0 3px;
+    border-radius: 16px;
 }
 .cart-btn{
     width: 100%;
@@ -19,3 +20,11 @@
 .bg{
     background-color: #f1f3ecfc;
 }
+
+@media only screen and (max-width: 1092px) {
+    .product-img{
+        width: 200px;
+        height: 200px;
+        border-radius: 16px;
+    }
+} 

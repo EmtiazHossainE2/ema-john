@@ -1,0 +1,24 @@
+.shop-container{
+    position: relative;
+}
+.cart-container{
+    background-color: #FFE0B2;
+  padding: 0 12px 0 12px;
+  border-radius: 8px;
+  position: fixed;
+  right: 0px;
+}
+
+
+
+@media only screen and (max-width: 692px) {
+    .shop-container {
+      display: flex ;
+      flex-direction: column;
+      flex-direction: column-reverse
+    }
+    .cart-container{
+        padding-top: 5px;
+      position: sticky;
+    }
+  } 
