@@ -8,7 +8,7 @@ const addToDb = id => {
         shoppingCart = JSON.parse(storedCart);
     }
 
-    // add quantity
+    // add quantity 
     const quantity = shoppingCart[id];
     if (quantity) {
         const newQuantity = quantity + 1;
@@ -19,6 +19,8 @@ const addToDb = id => {
     }
     localStorage.setItem('shopping-cart', JSON.stringify(shoppingCart));
 }
+
+
 const getStoredCart = () => {
     let shoppingCart = {};
 
@@ -29,6 +31,8 @@ const getStoredCart = () => {
     }
     return shoppingCart;
 }
+
+
 const removeFromDb = id => {
     const storedCart = localStorage.getItem('shopping-cart');
     if (storedCart) {
@@ -52,6 +56,7 @@ export {
 }
 
 
+//How we can access object properties?
 
 // const myName = {
 //     name: 'Emtiaz '
