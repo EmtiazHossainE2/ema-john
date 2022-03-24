@@ -1,0 +1,21 @@
+
+.product-img{
+    width: 270px;
+    height: 270px;
+    border-radius: 8px;
+    margin: 0 3px;
+}
+.cart-btn{
+    width: 100%;
+    background-color: #FFE0B2;
+    cursor: pointer;
+    border: 0 ;
+    font-size: 17px;
+}
+.cart-btn:hover {
+    background-color: rgb(255, 170, 12);
+}
+
+.bg{
+    background-color: #f1f3ecfc;
+}

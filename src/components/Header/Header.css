@@ -1,0 +1,8 @@
+.nav-end{
+    justify-content: flex-end;
+    color: #fff;
+}
+.nav-style a{
+    color: red;
+    font-size: 17px;
+}
