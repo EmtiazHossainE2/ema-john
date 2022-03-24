@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { addToDb, getStoredCart } from '../../utilities/fakedb';
 import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
 import './Shop.css'
@@ -12,11 +13,47 @@ const Shop = () => {
             .then(data => setProducts(data))
     }, [])
 
+    //load stored Cart data 
+    useEffect(() => {
+        const storedCart = getStoredCart()
+        const savedCart = []
+        for (const id in storedCart) {
+            // console.log(id); // obj theke id ta bar kore niye asci for in loop diye 
+            const exitsProducts = products.find(product => product.id === id);
+            if (exitsProducts) {
+                const quantity = storedCart[id]
+                exitsProducts.quantity = quantity
+                console.log(exitsProducts);
+                savedCart.push(exitsProducts)
+            }
+        }
+        setCart(savedCart)
+    }, [products])
+
     //handle cart 
-    const handleAddToCart = product => {
-        const newCart = [...cart, product]
+    // const handleAddToCart = product => {
+    //     const newCart = [...cart, product]
+    //     setCart(newCart)
+    //     addToDb(product.id)
+    // }
+    //handle cart 
+    const handleAddToCart = selectedProduct => {
+        let newCart = []
+        const exists = cart.find(product => product.id === selectedProduct.id)
+        if (!exists) {
+            selectedProduct.quantity = 1
+            newCart = [...cart, selectedProduct]
+        }
+        else {
+            const rest = cart.filter(product => product.id !== selectedProduct.id)
+            //lal jama porake khuje niye aste bolce oke bar kori baki gulan ace rest er vitor 
+
+            newCart = [...rest, exists]
+        }
         setCart(newCart)
+        addToDb(selectedProduct.id)
     }
+
 
     return (
         <div>

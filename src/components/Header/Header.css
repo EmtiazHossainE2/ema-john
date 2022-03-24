@@ -3,6 +3,6 @@
     color: #fff;
 }
 .nav-style a{
-    color: red;
+    color: red !important;
     font-size: 17px;
 }

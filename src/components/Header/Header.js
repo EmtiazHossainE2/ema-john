@@ -5,8 +5,8 @@ import './Header.css'
 
 // custom css 
 // const navStyle = {
-//     color : 'red', 
-//     fontSize : '17px'
+//     color: 'red',
+//     fontSize: '17px'
 // }
 
 const Header = () => {
@@ -18,10 +18,10 @@ const Header = () => {
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav" className='nav-end'>
                         <Nav className='nav-style'>
-                            <Nav.Link href="/shop">Shop</Nav.Link>
-                            <Nav.Link href="/order">Order</Nav.Link>
-                            <Nav.Link href="/review">Review Order</Nav.Link>
-                            <Nav.Link href="/inventory">Manage Inventory</Nav.Link>
+                            <Nav.Link href="/shop" >Shop</Nav.Link>
+                            <Nav.Link href="/order" >Order</Nav.Link>
+                            <Nav.Link href="/review" >Review Order</Nav.Link>
+                            <Nav.Link href="/inventory" >Manage Inventory</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
