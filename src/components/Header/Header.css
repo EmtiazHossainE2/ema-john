@@ -3,6 +3,10 @@
     color: #fff;
 }
 .nav-style a{
-    color: red !important;
+    color: #fff !important;
+    font-size: 17px;
+}
+.nav-style a:hover{
+    color: orange !important;
     font-size: 17px;
 }

@@ -3,11 +3,6 @@ import { Container, Nav, Navbar } from 'react-bootstrap';
 import logo from '../../images/Logo.svg'
 import './Header.css'
 
-// custom css 
-// const navStyle = {
-//     color: 'red',
-//     fontSize: '17px'
-// }
 
 const Header = () => {
     return (

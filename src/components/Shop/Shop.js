@@ -31,12 +31,6 @@ const Shop = () => {
     }, [products])
 
     //handle cart 
-    // const handleAddToCart = product => {
-    //     const newCart = [...cart, product]
-    //     setCart(newCart)
-    //     addToDb(product.id)
-    // }
-    //handle cart 
     const handleAddToCart = selectedProduct => {
         let newCart = []
         const exists = cart.find(product => product.id === selectedProduct.id)
@@ -47,7 +41,7 @@ const Shop = () => {
         else {
             const rest = cart.filter(product => product.id !== selectedProduct.id)
             //lal jama porake khuje niye aste bolce oke bar kori baki gulan ace rest er vitor 
-
+            exists.quantity = exists.quantity + 1;
             newCart = [...rest, exists]
         }
         setCart(newCart)

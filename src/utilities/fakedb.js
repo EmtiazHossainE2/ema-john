@@ -57,11 +57,11 @@ export {
 //     name: 'Emtiaz '
 // }
 
-// console.log(myName.name); //dot notation 
+// console.log(myName.name); //dot notation
 
 // console.log(myName['name']);  //  square bracket notation dynamic vabe access krte hole eivabe krte hoy
 
-// const { name } = myName;  //  destructuring 
+// const { name } = myName;  //  destructuring
 // console.log(name);
 
 
