@@ -1,6 +1,8 @@
 import React from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import logo from '../../images/Logo.svg'
+import CustomLink from '../CustomLink/CustomLink';
 import './Header.css'
 
 
@@ -9,14 +11,14 @@ const Header = () => {
         <div >
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
                 <Container>
-                    <Navbar.Brand href="#home"><img src={logo} alt="" /></Navbar.Brand>
+                    <Link to='/'><img src={logo} alt="" /></Link>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                    <Navbar.Collapse id="responsive-navbar-nav" className='nav-end'>
+                    <Navbar.Collapse id="responsive-navbar-nav" className='justify-content-end '>
                         <Nav className='nav-style'>
-                            <Nav.Link href="/shop" >Shop</Nav.Link>
-                            <Nav.Link href="/order" >Order</Nav.Link>
-                            <Nav.Link href="/review" >Review Order</Nav.Link>
-                            <Nav.Link href="/inventory" >Manage Inventory</Nav.Link>
+                            <CustomLink className='pb-5' to='/'>Shop</CustomLink>
+                            <CustomLink className='pb-5' to='/orders'>Orders</CustomLink>
+                            <CustomLink className='pb-5' to='/reviews'> Reviews</CustomLink>
+                            <CustomLink className='pb-5' to='/inventory'>Manage Inventory</CustomLink>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

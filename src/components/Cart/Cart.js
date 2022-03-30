@@ -4,7 +4,7 @@ import React from 'react';
 import './Cart.css'
 
 const Cart = (props) => {
-    const { cart } = props
+    const { cart, remove, deleteAll } = props
     // console.log(cart);
     let total = 0
     let shipping = 0
@@ -16,6 +16,9 @@ const Cart = (props) => {
     }
     const tax = parseFloat(total * 10 / 100)
     const grandTotal = total + shipping + tax
+
+
+
     return (
         <div className='cart-container'>
             <h5 className='py-3'>Order Summary</h5>
@@ -26,8 +29,8 @@ const Cart = (props) => {
                 <p>Tax : ${tax}</p>
                 <h5>Grand Total : ${grandTotal} </h5>
             </div>
-            <button className='clear-cart my-2'>
-                <p className='my-2'>Clear Cart <FontAwesomeIcon className='icon' icon={faTrash}></FontAwesomeIcon></p>
+            <button className='clear-cart my-2' onClick={deleteAll} >
+                <p className='my-2' onClick={remove}>Clear Cart <FontAwesomeIcon className='icon' icon={faTrash}></FontAwesomeIcon></p>
             </button>
             <button className='review-order mb-3'>
                 <p className='my-2'>Review Order <FontAwesomeIcon className='icon' icon={faArrowRight}></FontAwesomeIcon></p>
