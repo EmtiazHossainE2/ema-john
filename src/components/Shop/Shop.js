@@ -4,7 +4,10 @@ import useProducts from '../../hooks/useProducts';
 import { addToDb, deleteShoppingCart, getStoredCart } from '../../utilities/fakedb';
 import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
+import { faArrowRight, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Shop.css'
+import { Link } from 'react-router-dom';
 
 const Shop = () => {
     const [products, setProducts] = useProducts()
@@ -52,7 +55,16 @@ const Shop = () => {
                 </div>
 
                 <div className="col-lg-2 col-md-3 cart-container">
-                    <Cart cart={cart} remove={remove} deleteAll={deleteAll}></Cart>
+                    <Cart cart={cart} >
+                        <button className='clear-cart my-2' onClick={deleteAll} >
+                            <p className='my-2' onClick={remove}>Clear Cart <FontAwesomeIcon className='icon' icon={faTrash}></FontAwesomeIcon></p>
+                        </button>
+                        <Link to='/orders'>
+                            <button className='review-order mb-3'>
+                                <p className='my-2'>Review Order <FontAwesomeIcon className='icon' icon={faArrowRight}></FontAwesomeIcon></p>
+                            </button>
+                        </Link>
+                    </Cart>
                 </div>
             </div>
         </div>

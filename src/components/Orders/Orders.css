@@ -1,3 +1,16 @@
+.review-order {
+    width: 100%;
+    background-color: rgb(255, 170, 12);
+    cursor: pointer;
+    border: 0;
+    color: #fff;
+    border-radius: 8px;
+}
+
+.icon {
+    margin-left: 8px;
+}
+
 @media only screen and (max-width: 768px) {
     .orders-container {
         display: flex;

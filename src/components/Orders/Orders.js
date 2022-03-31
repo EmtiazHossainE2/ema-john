@@ -4,6 +4,8 @@ import useProducts from '../../hooks/useProducts';
 import { removeFromDb } from '../../utilities/fakedb';
 import Cart from '../Cart/Cart';
 import OrderSummary from '../OrderSummary/OrderSummary';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Orders.css'
 
 const Orders = () => {
@@ -28,7 +30,11 @@ const Orders = () => {
                         }
                     </div>
                     <div className="col-lg-4 col-md-6 cart-container2">
-                        <Cart cart={cart}></Cart>
+                        <Cart cart={cart} >
+                            <button className='review-order my-3'>
+                                <p className='my-2'>Proceed Checkout <FontAwesomeIcon className='icon' icon={faArrowRight}></FontAwesomeIcon></p>
+                            </button>
+                        </Cart>
                     </div>
                 </div>
             </div>
