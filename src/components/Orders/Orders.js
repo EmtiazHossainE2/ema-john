@@ -1,6 +1,7 @@
 import React from 'react';
 import useCart from '../../hooks/useCart';
 import useProducts from '../../hooks/useProducts';
+import { removeFromDb } from '../../utilities/fakedb';
 import Cart from '../Cart/Cart';
 import OrderSummary from '../OrderSummary/OrderSummary';
 import './Orders.css'
@@ -8,6 +9,11 @@ import './Orders.css'
 const Orders = () => {
     const [products, setProducts] = useProducts()
     const [cart, setCart] = useCart(products)
+    const handleRemoveProduct = product => {
+        const rest = cart.filter(pd => pd.id !== product.id)
+        setCart(rest)
+        removeFromDb(product.id)
+    }
     return (
         <div>
             <div className="container my-5">
@@ -17,6 +23,7 @@ const Orders = () => {
                             cart.map(product => <OrderSummary
                                 key={product.id}
                                 product={product}
+                                handleRemoveProduct={handleRemoveProduct}
                             ></OrderSummary>)
                         }
                     </div>
