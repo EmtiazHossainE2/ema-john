@@ -21,6 +21,9 @@
 
 .deleteIcon {
     font-size: 25px;
+    background-color: rgba(235, 87, 87, 0.3);
     color: red;
+    padding: 10px;
+    border-radius: 50%;
     cursor: pointer;
 }

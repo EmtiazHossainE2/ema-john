@@ -8,7 +8,7 @@ const OrderSummary = (props) => {
     return (
         <div>
             <div className="row container order-container mb-4 mt-3">
-                <div className="col-lg-11 col-sm-10 product-container ">
+                <div className="col-lg-10 col-sm-10 product-container ">
                     <div><img className='order-img me-5' src={img} alt="" /></div>
                     <div>
                         <h5 className='mt-3' title={name}>{name.length > 20 ? name.slice(0, 20) + '...' : name}</h5>
@@ -17,7 +17,7 @@ const OrderSummary = (props) => {
                         <p>Shipping Charge: ${shipping}</p>
                     </div>
                 </div>
-                <div className="col-lg-1 col-sm-2 ">
+                <div className="col-lg-2 col-sm-2 ">
                     <FontAwesomeIcon className='deleteIcon' icon={faTrash}></FontAwesomeIcon>
                 </div>
             </div>
