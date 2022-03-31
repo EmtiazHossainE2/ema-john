@@ -7,6 +7,7 @@ import OrderSummary from '../OrderSummary/OrderSummary';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Orders.css'
+import { Link } from 'react-router-dom';
 
 const Orders = () => {
     const [products, setProducts] = useProducts()
@@ -31,9 +32,10 @@ const Orders = () => {
                     </div>
                     <div className="col-lg-4 col-md-6 cart-container2">
                         <Cart cart={cart} >
-                            <button className='review-order my-3'>
-                                <p className='my-2'>Proceed Checkout <FontAwesomeIcon className='icon' icon={faArrowRight}></FontAwesomeIcon></p>
-                            </button>
+                            <Link to='/inventory'>
+                                <button className='review-order my-3'>
+                                    <p className='my-2'>Proceed Checkout <FontAwesomeIcon className='icon' icon={faArrowRight}></FontAwesomeIcon></p>
+                                </button></Link>
                         </Cart>
                     </div>
                 </div>
