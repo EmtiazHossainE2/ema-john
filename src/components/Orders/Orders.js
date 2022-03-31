@@ -2,21 +2,25 @@ import React from 'react';
 import useCart from '../../hooks/useCart';
 import useProducts from '../../hooks/useProducts';
 import Cart from '../Cart/Cart';
-import OrderItems from '../OrderItems/OrderItems';
 import OrderSummary from '../OrderSummary/OrderSummary';
+import './Orders.css'
 
 const Orders = () => {
     const [products, setProducts] = useProducts()
     const [cart, setCart] = useCart(products)
     return (
         <div>
-            <h1 className='text-center my-3'>Order Page</h1>
-            <div className="container">
-                <div className="row  mt-5">
-                    <div className="col-lg-6 text-center">
-                        <OrderSummary></OrderSummary>
+            <div className="container my-5">
+                <div className="row  mt-3 orders-container">
+                    <div className="col-lg-8 col-ms-6">
+                        {
+                            cart.map(product => <OrderSummary
+                                key={product.id}
+                                product={product}
+                            ></OrderSummary>)
+                        }
                     </div>
-                    <div className="col-lg-6">
+                    <div className="col-lg-4 col-md-6 cart-container2">
                         <Cart cart={cart}></Cart>
                     </div>
                 </div>
