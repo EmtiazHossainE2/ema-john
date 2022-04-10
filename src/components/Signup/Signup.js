@@ -71,7 +71,7 @@ const Signup = () => {
                     // Signed in 
                     const user = userCredential.user;
                     console.log(user);
-                    toast.success("welcome to Ema John", { id: "success" });
+                    toast.success("Welcome to Ema John", { id: "success" });
                     navigate("/")
                 })
                 .catch((error) => {
