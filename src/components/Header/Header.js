@@ -1,12 +1,14 @@
 import React from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import useFirebase from '../../hooks/useFirebase';
 import logo from '../../images/Logo.svg'
 import CustomLink from '../CustomLink/CustomLink';
 import './Header.css'
 
 
 const Header = () => {
+    const { user, handleSignOut } = useFirebase()
     return (
         <div >
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -19,8 +21,18 @@ const Header = () => {
                             <CustomLink className='pb-5' to='/orders'>Orders</CustomLink>
                             <CustomLink className='pb-5' to='/reviews'> Reviews</CustomLink>
                             <CustomLink className='pb-5' to='/inventory'>Inventory</CustomLink>
-                            <CustomLink className='pb-5' to='/signup'>Sign up</CustomLink>
-                            <CustomLink className='pb-5' to='/login'>Log in</CustomLink>
+                            {user?.uid
+                                ?
+                                ""
+                                :
+                                <CustomLink className='pb-5' to='/signup'>Sign up</CustomLink>
+                            }
+                            {user?.uid
+                                ?
+                                <CustomLink className='pb-5' to='/login' onClick={handleSignOut}>Log Out</CustomLink>
+                                :
+                                <CustomLink className='pb-5' to='/login'>Log in</CustomLink>}
+
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

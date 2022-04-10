@@ -1,5 +1,8 @@
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { auth } from "../../Firebase/firebase.init";
 import GoogleLogo from "../../images/google.svg";
 
 const Signup = () => {
@@ -63,7 +66,22 @@ const Signup = () => {
         }
 
         if (email.value && password.value && confirmPassword.value === password.value) {
-
+            createUserWithEmailAndPassword(auth, email.value, password.value)
+                .then((userCredential) => {
+                    // Signed in 
+                    const user = userCredential.user;
+                    console.log(user);
+                    toast.success("welcome to Ema John", { id: "success" });
+                    navigate("/")
+                })
+                .catch((error) => {
+                    const errorMessage = error.message;
+                    if (errorMessage.includes("already-in-use")) {
+                        toast.error("Email already in use", { id: "error" });
+                    } else {
+                        toast.error(errorMessage, { id: "error" });
+                    }
+                });
         }
     }
 
