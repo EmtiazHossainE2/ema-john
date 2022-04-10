@@ -9,28 +9,43 @@ const Signup = () => {
     const [confirmPassword, setConfirmPassword] = useState('')
     const [error, setError] = useState('')
 
+    const handleEmail = event => {
+        console.log(event.target.value);
+        setEmail(event.target.value)
+    }
+    const handlePassword = event => {
+        console.log(event.target.value);
+        setPassword(event.target.value)
+    }
+    const handleConfirmPassword = event => {
+        console.log(event.target.value);
+        setConfirmPassword(event.target.value)
+    }
+    const handleSubmit = event => {
+        event.preventDefault()
+    }
 
 
     return (
         <div className='auth-form-container '>
             <div className='auth-form'>
                 <h1>Sign Up</h1>
-                <form>
+                <form onSubmit={handleSubmit}>
                     <div className='input-field'>
                         <label htmlFor='email'>Email</label>
-                        <div className='input-wrapper'>
-                            <input type='email' name='email' id='email' />
+                        <div className='input-wrapper' onBlur={handleEmail}>
+                            <input type='text' name='email' id='email' />
                         </div>
                     </div>
                     <div className='input-field'>
                         <label htmlFor='password'>Password</label>
-                        <div className='input-wrapper'>
+                        <div className='input-wrapper' onBlur={handlePassword}>
                             <input type='password' name='password' id='password' />
                         </div>
                     </div>
                     <div className='input-field'>
                         <label htmlFor='confirm-password'>Confirm Password</label>
-                        <div className='input-wrapper'>
+                        <div className='input-wrapper' onBlur={handleConfirmPassword}>
                             <input
                                 type='password'
                                 name='confirmPassword'
