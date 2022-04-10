@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../Firebase/firebase.init";
+import useFirebase from "../../hooks/useFirebase";
 import GoogleLogo from "../../images/google.svg";
 
 const Signup = () => {
@@ -10,6 +11,8 @@ const Signup = () => {
     const [email, setEmail] = useState({ value: "", error: "" })
     const [password, setPassword] = useState({ value: "", error: "" })
     const [confirmPassword, setConfirmPassword] = useState({ value: "", error: "" })
+
+    const { handleGoogleSignIn } = useFirebase()
 
 
     //handle email
@@ -130,7 +133,7 @@ const Signup = () => {
                     <div className='line-right' />
                 </div>
                 <div className='input-wrapper'>
-                    <button className='google-auth'>
+                    <button className='google-auth' onClick={handleGoogleSignIn}>
                         <img src={GoogleLogo} alt='' />
                         <p> Continue with Google </p>
                     </button>

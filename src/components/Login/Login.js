@@ -5,8 +5,10 @@ import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../Firebase/firebase.init";
 import toast from "react-hot-toast";
+import useFirebase from "../../hooks/useFirebase";
 
 const Login = () => {
+    const { handleGoogleSignIn } = useFirebase()
     const navigate = useNavigate();
     const [email, setEmail] = useState({ value: "", error: "" })
     const [password, setPassword] = useState({ value: "", error: "" })
@@ -100,7 +102,7 @@ const Login = () => {
                     <div className='line-right' />
                 </div>
                 <div className='input-wrapper'>
-                    <button className='google-auth'>
+                    <button className='google-auth' onClick={handleGoogleSignIn}>
                         <img src={GoogleLogo} alt='' />
                         <p> Continue with Google </p>
                     </button>
