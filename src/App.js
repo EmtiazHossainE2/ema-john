@@ -8,6 +8,8 @@ import NotFound from './components/NotFound/NotFound';
 import Orders from './components/Orders/Orders';
 import Inventory from './components/Inventory/Inventory';
 import Review from './components/Review/Review';
+import Signup from './components/Signup/Signup';
+import Login from './components/Login/Login';
 
 const App = () => {
     return (
@@ -18,6 +20,8 @@ const App = () => {
                 <Route path='/orders' element={<Orders></Orders>}></Route>
                 <Route path='/inventory' element={<Inventory></Inventory>}></Route>
                 <Route path='/reviews' element={<Review></Review>}></Route>
+                <Route path='/signup' element={<Signup></Signup>}></Route>
+                <Route path='/login' element={<Login></Login>}></Route>
                 <Route path='*' element={<NotFound></NotFound>}></Route>
             </Routes>
         </div>

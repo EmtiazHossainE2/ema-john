@@ -18,7 +18,9 @@ const Header = () => {
                             <CustomLink className='pb-5' to='/'>Shop</CustomLink>
                             <CustomLink className='pb-5' to='/orders'>Orders</CustomLink>
                             <CustomLink className='pb-5' to='/reviews'> Reviews</CustomLink>
-                            <CustomLink className='pb-5' to='/inventory'>Manage Inventory</CustomLink>
+                            <CustomLink className='pb-5' to='/inventory'>Inventory</CustomLink>
+                            <CustomLink className='pb-5' to='/signup'>Sign up</CustomLink>
+                            <CustomLink className='pb-5' to='/login'>Log in</CustomLink>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
