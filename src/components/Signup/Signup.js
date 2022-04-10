@@ -4,25 +4,67 @@ import GoogleLogo from "../../images/google.svg";
 
 const Signup = () => {
     const navigate = useNavigate();
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [confirmPassword, setConfirmPassword] = useState('')
-    const [error, setError] = useState('')
+    const [email, setEmail] = useState({ value: "", error: "" })
+    const [password, setPassword] = useState({ value: "", error: "" })
+    const [confirmPassword, setConfirmPassword] = useState({ value: "", error: "" })
 
+
+    //handle email
     const handleEmail = event => {
-        console.log(event.target.value);
-        setEmail(event.target.value)
+        const emailValue = event.target.value
+        if (/\S+@\S+\.\S+/.test(emailValue)) {
+            setEmail({ value: emailValue, error: "" });
+        } else {
+            setEmail({ value: "", error: "Please Provide a valid Email" });
+        }
     }
+
+    //handle password
     const handlePassword = event => {
-        console.log(event.target.value);
-        setPassword(event.target.value)
+        const passwordValue = event.target.value
+        if (passwordValue.length < 6) {
+            setPassword({ value: "", error: "Password too short" });
+        }
+        else if (!/(?=.*[A-Z])/.test(passwordValue)) {
+            setPassword({
+                value: "", error: "Password must contain a capital letter",
+            });
+        }
+        else {
+            setPassword({ value: passwordValue, error: "" });
+        }
     }
+
+    //handle confirm password 
     const handleConfirmPassword = event => {
-        console.log(event.target.value);
-        setConfirmPassword(event.target.value)
+        const confirmValue = event.target.value
+        if (confirmValue !== password.value) {
+            setConfirmPassword({ value: "", error: "Password Not Match" });
+        } else {
+            setConfirmPassword({ value: confirmValue, error: "" });
+        }
     }
+
+
+    //handle submit btn 
     const handleSubmit = event => {
         event.preventDefault()
+
+        if (email.value === "") {
+            setEmail({ value: "", error: "Email is required" });
+        }
+        if (password.value === "") {
+            setPassword({ value: "", error: "Password is required" });
+        }
+        if (confirmPassword.value === "") {
+            setConfirmPassword({
+                value: "", error: "Password confirmation is required",
+            });
+        }
+
+        if (email.value && password.value && confirmPassword.value === password.value) {
+
+        }
     }
 
 
@@ -36,12 +78,14 @@ const Signup = () => {
                         <div className='input-wrapper' onBlur={handleEmail}>
                             <input type='text' name='email' id='email' />
                         </div>
+                        {email?.error && <p className="error"> {email.error}</p>}
                     </div>
                     <div className='input-field'>
                         <label htmlFor='password'>Password</label>
                         <div className='input-wrapper' onBlur={handlePassword}>
                             <input type='password' name='password' id='password' />
                         </div>
+                        {password?.error && <p className="error"> {password.error}</p>}
                     </div>
                     <div className='input-field'>
                         <label htmlFor='confirm-password'>Confirm Password</label>
@@ -52,6 +96,7 @@ const Signup = () => {
                                 id='confirm-password'
                             />
                         </div>
+                        {confirmPassword?.error && <p className="error"> {confirmPassword.error}</p>}
                     </div>
                     <button type='submit' className='auth-form-submit'>
                         Sign Up
