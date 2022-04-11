@@ -17,6 +17,7 @@ const Inventory = () => {
 
     return (
         <div className='w-50 m-auto my-5 py-5'>
+            <h2>Your Info</h2>
             <Form noValidate validated={validated} onSubmit={handleSubmit}>
                 <Row className="mb-3 ">
                     <Form.Group className='py-2' as={Col} md="12" controlId="validationCustom01">

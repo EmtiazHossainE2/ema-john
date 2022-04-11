@@ -1,6 +1,7 @@
 # Live Link 
 # Ema John Responsive Site 
-https://ema-john-by-emtiaz.netlify.app/ 
+https://ema-john-responsive.web.app/
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
