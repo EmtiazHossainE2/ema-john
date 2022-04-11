@@ -81,12 +81,14 @@ const Login = () => {
                         <div className='input-wrapper' onBlur={handleEmail}>
                             <input type='text' name='email' id='email' />
                         </div>
+                        {email?.error && <p className="error"> {email.error}</p>}
                     </div>
                     <div className='input-field'>
                         <label htmlFor='password'>Password</label>
                         <div className='input-wrapper' onBlur={handlePassword}>
                             <input type='password' name='password' id='password' />
                         </div>
+                        {password?.error && <p className="error"> {password.error}</p>}
                     </div>
                     <button type='submit' className='auth-form-submit'>
                         Login
