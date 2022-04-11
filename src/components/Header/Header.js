@@ -1,14 +1,16 @@
+import { signOut } from 'firebase/auth';
 import React from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
-import useFirebase from '../../hooks/useFirebase';
+import { auth } from '../../Firebase/firebase.init';
 import logo from '../../images/Logo.svg'
 import CustomLink from '../CustomLink/CustomLink';
 import './Header.css'
 
 
 const Header = () => {
-    const { user, handleSignOut } = useFirebase()
+    const [user] = useAuthState(auth)
     return (
         <div >
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -21,6 +23,7 @@ const Header = () => {
                             <CustomLink className='pb-5' to='/orders'>Orders</CustomLink>
                             <CustomLink className='pb-5' to='/reviews'> Reviews</CustomLink>
                             <CustomLink className='pb-5' to='/inventory'>Inventory</CustomLink>
+
                             {user?.uid
                                 ?
                                 ""
@@ -29,7 +32,7 @@ const Header = () => {
                             }
                             {user?.uid
                                 ?
-                                <CustomLink className='pb-5' to='/login' onClick={handleSignOut}>Log Out</CustomLink>
+                                <CustomLink className='pb-5' to='/login' onClick={() => signOut(auth)}>Log Out</CustomLink>
                                 :
                                 <CustomLink className='pb-5' to='/login'>Log in</CustomLink>}
 

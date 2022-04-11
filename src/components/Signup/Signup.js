@@ -1,10 +1,9 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import React, { useState } from "react";
-import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../Firebase/firebase.init";
-import useFirebase from "../../hooks/useFirebase";
 import GoogleLogo from "../../images/google.svg";
+import toast from 'react-hot-toast';
 
 const Signup = () => {
     const navigate = useNavigate();
@@ -12,7 +11,8 @@ const Signup = () => {
     const [password, setPassword] = useState({ value: "", error: "" })
     const [confirmPassword, setConfirmPassword] = useState({ value: "", error: "" })
 
-    const { handleGoogleSignIn } = useFirebase()
+    //
+    const [createUserWithEmailAndPassword] = useCreateUserWithEmailAndPassword(auth);
 
 
     //handle email
@@ -29,7 +29,7 @@ const Signup = () => {
     const handlePassword = event => {
         const passwordValue = event.target.value
         if (passwordValue.length < 6) {
-            setPassword({ value: "", error: "Password too short" });
+            setPassword({ value: "", error: "Password must be 6 character or more" });
         }
         else if (!/(?=.*[A-Z])/.test(passwordValue)) {
             setPassword({
@@ -69,22 +69,11 @@ const Signup = () => {
         }
 
         if (email.value && password.value && confirmPassword.value === password.value) {
-            createUserWithEmailAndPassword(auth, email.value, password.value)
-                .then((userCredential) => {
-                    // Signed in 
-                    const user = userCredential.user;
-                    console.log(user);
+            createUserWithEmailAndPassword(email.value, password.value)
+                .then(() => {
                     toast.success("Welcome to Ema John", { id: "success" });
                     navigate("/")
                 })
-                .catch((error) => {
-                    const errorMessage = error.message;
-                    if (errorMessage.includes("already-in-use")) {
-                        toast.error("Email already in use", { id: "error" });
-                    } else {
-                        toast.error(errorMessage, { id: "error" });
-                    }
-                });
         }
     }
 
@@ -133,7 +122,7 @@ const Signup = () => {
                     <div className='line-right' />
                 </div>
                 <div className='input-wrapper'>
-                    <button className='google-auth' onClick={handleGoogleSignIn}>
+                    <button className='google-auth' >
                         <img src={GoogleLogo} alt='' />
                         <p> Continue with Google </p>
                     </button>

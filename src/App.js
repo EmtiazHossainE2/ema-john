@@ -11,6 +11,7 @@ import Review from './components/Review/Review';
 import Signup from './components/Signup/Signup';
 import Login from './components/Login/Login';
 import { Toaster } from 'react-hot-toast';
+import RequireAuth from './components/RequireAuth/RequireAuth';
 
 const App = () => {
     return (
@@ -20,7 +21,11 @@ const App = () => {
             <Routes>
                 <Route path='/' element={<Shop></Shop>}></Route>
                 <Route path='/orders' element={<Orders></Orders>}></Route>
-                <Route path='/inventory' element={<Inventory></Inventory>}></Route>
+                <Route path='/inventory' element={
+                    <RequireAuth>
+                        <Inventory></Inventory>
+                    </RequireAuth>
+                }></Route>
                 <Route path='/reviews' element={<Review></Review>}></Route>
                 <Route path='/signup' element={<Signup></Signup>}></Route>
                 <Route path='/login' element={<Login></Login>}></Route>

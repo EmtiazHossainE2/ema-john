@@ -1,17 +1,24 @@
 import React, { useState } from "react";
 import "./Login.css";
 import GoogleLogo from "../../images/google.svg";
-import { useNavigate } from "react-router-dom";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { useLocation, useNavigate } from "react-router-dom";
 import { auth } from "../../Firebase/firebase.init";
 import toast from "react-hot-toast";
-import useFirebase from "../../hooks/useFirebase";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 
 const Login = () => {
-    const { handleGoogleSignIn } = useFirebase()
     const navigate = useNavigate();
     const [email, setEmail] = useState({ value: "", error: "" })
     const [password, setPassword] = useState({ value: "", error: "" })
+
+    //react-firebase-hooks
+    const [signInWithEmailAndPassword, user, loading, hookError] = useSignInWithEmailAndPassword(auth);
+
+
+    //private route
+    let location = useLocation();
+    // console.log(location);
+    let from = location.state?.from?.pathname || "/";
 
     //handle email
     const handleEmail = event => {
@@ -27,7 +34,7 @@ const Login = () => {
     const handlePassword = event => {
         const passwordValue = event.target.value
         if (passwordValue.length < 6) {
-            setPassword({ value: "", error: "Password too short" });
+            setPassword({ value: "", error: "Password must be 6 character or more" });
         }
         else if (!/(?=.*[A-Z])/.test(passwordValue)) {
             setPassword({
@@ -39,6 +46,11 @@ const Login = () => {
         }
     }
 
+    if (user) {
+        navigate(from, { replace: true });
+    }
+
+
     //handle submit btn 
     const handleSubmit = event => {
         event.preventDefault()
@@ -46,28 +58,20 @@ const Login = () => {
         if (email.value === "") {
             setEmail({ value: "", error: "Email is required" });
         }
+        // if (password.value !== ) {
+        //     setPassword({ value: "", error: "Password is wrong" });
+        // }
+
         if (password.value === "") {
             setPassword({ value: "", error: "Password is required" });
         }
 
-
         if (email.value && password.value) {
-            signInWithEmailAndPassword(auth, email.value, password.value)
-                .then((userCredential) => {
-                    const user = userCredential.user;
-                    // console.log(user);
+            signInWithEmailAndPassword(email.value, password.value)
+                .then(() => {
                     toast.success(`Welcome back `, { id: "welcome" });
-                    navigate("/");
-                })
-                .catch((error) => {
-                    const errorMessage = error.message;
 
-                    if (errorMessage.includes("wrong-password")) {
-                        toast.error("Wrong Password", { id: "error" });
-                    } else {
-                        toast.error(errorMessage, { id: "error" });
-                    }
-                });
+                })
         }
     }
 
@@ -88,7 +92,10 @@ const Login = () => {
                         <div className='input-wrapper' onBlur={handlePassword}>
                             <input type='password' name='password' id='password' />
                         </div>
+                        {/* error handle  */}
                         {password?.error && <p className="error"> {password.error}</p>}
+                        {loading && <p>Loading...</p>}
+                        {hookError && <p className="error"> Password is Wrong</p>}
                     </div>
                     <button type='submit' className='auth-form-submit'>
                         Login
@@ -104,7 +111,7 @@ const Login = () => {
                     <div className='line-right' />
                 </div>
                 <div className='input-wrapper'>
-                    <button className='google-auth' onClick={handleGoogleSignIn}>
+                    <button className='google-auth' >
                         <img src={GoogleLogo} alt='' />
                         <p> Continue with Google </p>
                     </button>
