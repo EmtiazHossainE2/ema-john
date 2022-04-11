@@ -4,21 +4,31 @@ import GoogleLogo from "../../images/google.svg";
 import { useLocation, useNavigate } from "react-router-dom";
 import { auth } from "../../Firebase/firebase.init";
 import toast from "react-hot-toast";
-import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { useSignInWithEmailAndPassword, useSignInWithGoogle } from "react-firebase-hooks/auth";
 
 const Login = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState({ value: "", error: "" })
     const [password, setPassword] = useState({ value: "", error: "" })
 
-    //react-firebase-hooks
-    const [signInWithEmailAndPassword, user, loading, hookError] = useSignInWithEmailAndPassword(auth);
-
-
     //private route
     let location = useLocation();
-    // console.log(location);
     let from = location.state?.from?.pathname || "/";
+
+    //react-firebase-hooks
+    const [signInWithEmailAndPassword, user, loading, hookError] = useSignInWithEmailAndPassword(auth);
+    const [signInWithGoogle] = useSignInWithGoogle(auth)
+
+    //handle google sign in 
+    const handleGoogle = () => {
+        signInWithGoogle()
+            .then(() => {
+                navigate(from)
+            })
+    }
+
+
+
 
     //handle email
     const handleEmail = event => {
@@ -111,7 +121,7 @@ const Login = () => {
                     <div className='line-right' />
                 </div>
                 <div className='input-wrapper'>
-                    <button className='google-auth' >
+                    <button className='google-auth' onClick={handleGoogle}>
                         <img src={GoogleLogo} alt='' />
                         <p> Continue with Google </p>
                     </button>

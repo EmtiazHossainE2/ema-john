@@ -1,6 +1,6 @@
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { auth } from "../../Firebase/firebase.init";
 import GoogleLogo from "../../images/google.svg";
 import toast from 'react-hot-toast';
@@ -11,9 +11,19 @@ const Signup = () => {
     const [password, setPassword] = useState({ value: "", error: "" })
     const [confirmPassword, setConfirmPassword] = useState({ value: "", error: "" })
 
-    //
+    //react firebase hook
+    let location = useLocation();
+    let from = location.state?.from?.pathname || "/";
     const [createUserWithEmailAndPassword] = useCreateUserWithEmailAndPassword(auth);
+    const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
 
+    //handle google sign up 
+    const handleGoogle = () => {
+        signInWithGoogle()
+            .then(() => {
+                navigate(from, { replace: true });
+            })
+    }
 
     //handle email
     const handleEmail = event => {
@@ -122,7 +132,7 @@ const Signup = () => {
                     <div className='line-right' />
                 </div>
                 <div className='input-wrapper'>
-                    <button className='google-auth' >
+                    <button className='google-auth' onClick={handleGoogle}>
                         <img src={GoogleLogo} alt='' />
                         <p> Continue with Google </p>
                     </button>
