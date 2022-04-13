@@ -56,8 +56,13 @@ const Login = () => {
         }
     }
 
+    //toast and navigate 
     if (user) {
+        toast.success(`Welcome back `, { id: "welcome" });
         navigate(from, { replace: true });
+    }
+    if (hookError) {
+        toast.error(`error`, { id: "error" });
     }
 
 
@@ -68,9 +73,6 @@ const Login = () => {
         if (email.value === "") {
             setEmail({ value: "", error: "Email is required" });
         }
-        // if (password.value !== ) {
-        //     setPassword({ value: "", error: "Password is wrong" });
-        // }
 
         if (password.value === "") {
             setPassword({ value: "", error: "Password is required" });
@@ -78,10 +80,6 @@ const Login = () => {
 
         if (email.value && password.value) {
             signInWithEmailAndPassword(email.value, password.value)
-                .then(() => {
-                    toast.success(`Welcome back `, { id: "welcome" });
-
-                })
         }
     }
 
