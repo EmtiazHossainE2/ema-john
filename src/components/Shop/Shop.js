@@ -16,26 +16,26 @@ const Shop = () => {
     //handle cart 
     const handleAddToCart = selectedProduct => {
         let newCart = []
-        const exists = cart.find(product => product.id === selectedProduct.id)
+        const exists = cart.find(product => product._id === selectedProduct._id)
         if (!exists) {
             selectedProduct.quantity = 1
             newCart = [...cart, selectedProduct]
         }
         else {
-            const rest = cart.filter(product => product.id !== selectedProduct.id)
+            const rest = cart.filter(product => product._id !== selectedProduct._id)
             //lal jama porake khuje niye aste bolce oke bar kori baki gulan ace rest er vitor 
             exists.quantity = exists.quantity + 1;
             newCart = [...rest, exists]
         }
         setCart(newCart)
-        addToDb(selectedProduct.id)
+        addToDb(selectedProduct._id)
     }
     const remove = () => {
         let newCart = []
         setCart(newCart)
     }
     const deleteAll = (product) => {
-        deleteShoppingCart(product.id)
+        deleteShoppingCart(product._id)
     }
 
 

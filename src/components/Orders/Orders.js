@@ -13,9 +13,9 @@ const Orders = () => {
     const [products, setProducts] = useProducts()
     const [cart, setCart] = useCart(products)
     const handleRemoveProduct = product => {
-        const rest = cart.filter(pd => pd.id !== product.id)
+        const rest = cart.filter(pd => pd._id !== product._id)
         setCart(rest)
-        removeFromDb(product.id)
+        removeFromDb(product._id)
     }
     return (
         <div>
@@ -24,7 +24,7 @@ const Orders = () => {
                     <div className="col-lg-8 col-ms-6">
                         {
                             cart.map(product => <OrderSummary
-                                key={product.id}
+                                key={product._id}
                                 product={product}
                                 handleRemoveProduct={handleRemoveProduct}
                             ></OrderSummary>)
