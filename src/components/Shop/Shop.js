@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 
 const Shop = () => {
     const [products, setProducts] = useState([])
-    const [cart, setCart] = useCart(products)
+    const [cart, setCart] = useCart()
     const [pageCount, setPageCount] = useState(0)
     const [page, setPage] = useState(0)
     const [pageProduct,setPageProduct] =  useState(10)
@@ -19,7 +19,7 @@ const Shop = () => {
         fetch(`http://localhost:5000/product?page=${page}&pageProduct=${pageProduct}`)
             .then(res => res.json())
             .then(data => setProducts(data))
-    }, [])
+    }, [page,pageProduct])
 
 
     useEffect(() => {
