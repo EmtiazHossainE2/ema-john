@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import useCart from '../../hooks/useCart';
-import useProducts from '../../hooks/useProducts';
 import { addToDb, deleteShoppingCart, getStoredCart } from '../../utilities/fakedb';
 import Cart from '../Cart/Cart';
 import Product from '../Product/Product';
@@ -10,19 +9,28 @@ import './Shop.css'
 import { Link } from 'react-router-dom';
 
 const Shop = () => {
-    const [products, setProducts] = useProducts()
+    const [products, setProducts] = useState([])
     const [cart, setCart] = useCart(products)
-    const [pageCount,setPageCount] = useState(0)
+    const [pageCount, setPageCount] = useState(0)
+    const [page, setPage] = useState(0)
+    const [pageProduct,setPageProduct] =  useState(10)
+    
+    useEffect(() => {
+        fetch(`http://localhost:5000/product?page=${page}&pageProduct=${pageProduct}`)
+            .then(res => res.json())
+            .then(data => setProducts(data))
+    }, [])
 
-    useEffect(() =>{
+
+    useEffect(() => {
         fetch('http://localhost:5000/productCollection')
-        .then(res => res.json())
-        .then(data => {
-            const count = data.count 
-            const pages = Math.ceil(count/10)
-            setPageCount(pages)
-        })
-    },[])
+            .then(res => res.json())
+            .then(data => {
+                const count = data.count
+                const pages = Math.ceil(count / 10)
+                setPageCount(pages)
+            })
+    }, [])
 
 
     //handle cart 
@@ -64,13 +72,22 @@ const Shop = () => {
                             ></Product>)
                         }
                     </div>
-                    <div className='container'>
+                    {/* 13 */}
+                    <div className='container pagination-container'>
                         {
                             [...Array(pageCount).keys()]
-                            .map(number => 
-                                <button className='btn btn-warning me-2 px-3'>{number+1}</button>
+                                .map(number =>
+                                    <button className={page === number  ? 'selected' : ''}
+                                        onClick={() => setPage(number )}
+                                    >{number +1}</button>
                                 )
                         }
+                        <select name="" id="" onChange={e => setPageProduct(e.target.value)}>
+                            <option value="5">5</option>
+                            <option value="10" selected>10</option>
+                            <option value="15">15</option>
+                            <option value="20">20</option>
+                        </select>
                     </div>
                 </div>
 
